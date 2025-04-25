@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Плейлист відео</title>
+  <style>
+    body { display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+    video { max-width:100%; border:1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <video id="player" controls autoplay>
+    <!-- Початкова частина: 1.mp4 -->
+    <source src="videos/1.mp4" type="video/mp4" />
+    Ваш браузер не підтримує HTML5 Video.
+  </video>
+
+  <script>
+    (function(){
+      const totalParts = 7;      // ← змініть на загальну кількість ваших файлів
+      let current = 1;
+      const player = document.getElementById('player');
+
+      player.addEventListener('ended', () => {
+        current++;
+        if (current <= totalParts) {
+          // оновлюємо src і починаємо відтворення
+          player.src = `videos/${current}.mp4`;
+          player.load();
+          player.play();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
